@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		271A009C2F9E48BF00B5CF30 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 271A009B2F9E48BF00B5CF30 /* NukeUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		271AFEDD2F9E2CFC00B5CF30 /* React.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = React.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271A009C2F9E48BF00B5CF30 /* NukeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = React;
 			packageProductDependencies = (
+				271A009B2F9E48BF00B5CF30 /* NukeUI */,
 			);
 			productName = React;
 			productReference = 271AFEDD2F9E2CFC00B5CF30 /* React.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 271AFED42F9E2CFC00B5CF30;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				271A009A2F9E48BF00B5CF30 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 271AFEDE2F9E2CFC00B5CF30 /* Products */;
 			projectDirPath = "";
@@ -332,6 +341,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		271A009A2F9E48BF00B5CF30 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		271A009B2F9E48BF00B5CF30 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 271A009A2F9E48BF00B5CF30 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 271AFED52F9E2CFC00B5CF30 /* Project object */;
 }
