@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentPreview: View {
 
+    @State var react: React
     @State var isBlurred: Bool = true
 
     @State private var cornerRadius: CGFloat = 32
@@ -17,8 +18,9 @@ struct ContentPreview: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: self.cornerRadius)
-                .fill(.secondary)
+            self.react.Content()
+                .scaledToFill()
+                .clipShape(RoundedRectangle(cornerRadius: self.cornerRadius))
             RoundedRectangle(cornerRadius: self.cornerRadius)
                 .stroke(lineWidth: self.strokeWidth)
         }
@@ -26,5 +28,5 @@ struct ContentPreview: View {
 }
 
 #Preview {
-    ContentPreview()
+    ContentPreview(react: .sample)
 }

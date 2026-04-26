@@ -11,5 +11,5 @@ extension User {
 
     static let sample = User(username: "yannickjuarez",
                              displayName: "Yannick Juarez",
-                             profilePictureURL: URL(string: "https://placekitten.com/200/300"))
+                             profilePictureURL: URL(string: "https://picsum.photos/200/300"))
 }

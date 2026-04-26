@@ -20,7 +20,8 @@ struct MainReactView: View {
             }
 
             VStack {
-                ContentPreview()
+                SenderCapsule()
+                ContentPreview(react: self.react)
                 Text("Your reaction will be sent to \(self.react.sender.displayName)")
             }
             .padding()
@@ -41,8 +42,16 @@ struct MainReactView: View {
 
     private func SenderCapsule() -> some View {
         HStack {
-            
+            self.react.sender.Avatar()
+            Text(self.react.sender.displayName)
+                .font(.headline)
         }
+        .padding(4)
+        .padding(.trailing)
+        .background(
+            Capsule()
+                .fill(.secondary.opacity(0.2))
+        )
     }
 }
 
