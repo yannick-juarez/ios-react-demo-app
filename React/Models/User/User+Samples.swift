@@ -10,6 +10,6 @@ import Foundation
 extension User {
 
     static let sample = User(username: "yannickjuarez",
-                             displayName: "Yannick Juarez",
+                             displayName: "Yaya",
                              profilePictureURL: URL(string: "https://picsum.photos/200/300"))
 }

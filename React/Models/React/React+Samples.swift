@@ -9,7 +9,7 @@ import Foundation
 
 extension React {
 
-    static let sample = React(content: URL(string: "https://picsum.photos/400/720")!,
+    static let sample = React(content: URL(string: "https://picsum.photos/400/640")!,
                               hint: "Guess what just happened?",
                               sender: .sample)
 }

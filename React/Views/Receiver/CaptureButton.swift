@@ -11,7 +11,7 @@ struct CaptureButton: View {
 
     @Binding var isPressed: Bool
 
-    @State var radius: CGFloat = 86
+    @State var radius: CGFloat = 76
     @State var strokeWidth: CGFloat = 3
     @State var padding: CGFloat = 6
 
@@ -47,6 +47,7 @@ struct CaptureButton: View {
     }
 }
 
+@available(iOS 17.0, *)
 #Preview {
     @Previewable @State var pressed: Bool = false
 

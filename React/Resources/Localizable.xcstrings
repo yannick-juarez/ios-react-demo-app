@@ -1,0 +1,90 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ has sent you a content to React" : {
+
+    },
+    "%lld" : {
+
+    },
+    "A notification will arrive in a few seconds." : {
+
+    },
+    "Add a reply..." : {
+
+    },
+    "Allow Camera & Microphone Access" : {
+
+    },
+    "Allow Notifications" : {
+
+    },
+    "Allow notifications so Yannick can send you a React." : {
+
+    },
+    "Annuler" : {
+
+    },
+    "Are you sure?" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cancel recording" : {
+
+    },
+    "Cette image vient du menu Partager" : {
+
+    },
+    "Continuer" : {
+
+    },
+    "DEMO PURPOSES ONLY" : {
+
+    },
+    "Hold the record button to unlock this content" : {
+
+    },
+    "Keep holding to unlock" : {
+
+    },
+    "Keep recording" : {
+
+    },
+    "Notifications are disabled. Enable them in Settings to receive a React." : {
+
+    },
+    "Nouvelle photo recue" : {
+
+    },
+    "Open React directly" : {
+
+    },
+    "Open Settings" : {
+
+    },
+    "React sent" : {
+
+    },
+    "Send React Now" : {
+
+    },
+    "Switch back to sender" : {
+
+    },
+    "Tap it to open your React." : {
+
+    },
+    "This will discard your recording." : {
+
+    },
+    "You are about to receive a React..." : {
+
+    },
+    "Your reaction will be sent to %@" : {
+
+    }
+  },
+  "version" : "1.1"
+}
