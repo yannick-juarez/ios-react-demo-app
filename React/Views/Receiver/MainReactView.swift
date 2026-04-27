@@ -14,10 +14,11 @@ struct MainReactView: View {
     @StateObject private var permissionsManager = PermissionsManager()
     @Environment(\.scenePhase) private var scenePhase
 
-    let onReactionCaptured: () -> Void
+    let onReactionCaptured: (URL) -> Void
 
     @State private var isRecording: Bool = false
     @State private var isRevealed: Bool = false
+    @State private var wasRevealed: Bool = false
     @State private var countdownValue: Int? = nil
     @State private var countdownTask: Task<Void, Never>? = nil
 
@@ -37,13 +38,17 @@ struct MainReactView: View {
 
             ZStack {
                 if self.isRecording {
-                    self.react.sender.Avatar(radius: 120)
-                        .overlay {
-                            Circle()
-                                .stroke(.white, lineWidth: 2)
+                    FrontCameraPreview(
+                        radius: 120,
+                        isRecording: self.isRecording,
+                        onVideoReady: { url in
+                            if self.wasRevealed {
+                                self.onReactionCaptured(url)
+                            }
                         }
-                        .padding(.top, -170)
-                        .transition(.scale)
+                    )
+                    .padding(.top, -170)
+                    .transition(.scale)
                 }
 
                 CaptureButton(isPressed: self.$isRecording)
@@ -62,12 +67,12 @@ struct MainReactView: View {
         }
         .onChange(of: self.isRecording) { newValue in
             if newValue {
+                self.wasRevealed = false
                 self.startRevealCountdown()
             } else {
-                if self.isRevealed {
-                    self.onReactionCaptured()
-                }
+                self.wasRevealed = self.isRevealed
                 self.resetRevealCountdown()
+                // onReactionCaptured is called inside FrontCameraPreview.onVideoReady
             }
         }
         .onDisappear {
@@ -107,6 +112,6 @@ struct MainReactView: View {
 }
 
 #Preview {
-    MainReactView(react: .sample, onReactionCaptured: {})
+    MainReactView(react: .sample, onReactionCaptured: { _ in })
         .preferredColorScheme(.dark)
 }

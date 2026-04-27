@@ -6,19 +6,16 @@
 //
 
 import SwiftUI
-import NukeUI
 
 extension React {
 
     func Content() -> some View {
-        LazyImage(url: self.content) { state in
-            if let image = state.image {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } else {
+        AsyncImage(url: self.content) { image in
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        } placeholder: {
                 Color.secondary.opacity(0.2)
-            }
         }
         .clipped()
     }

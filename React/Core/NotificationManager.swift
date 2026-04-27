@@ -12,7 +12,7 @@ import Combine
 @MainActor
 final class NotificationManager: NSObject, ObservableObject {
 
-    static let reactNotificationIdentifier = "com.react.demo.incomingReact"
+    nonisolated static let reactNotificationIdentifier = "com.react.demo.incomingReact"
 
     @Published private(set) var authorizationStatus: UNAuthorizationStatus = .notDetermined
     @Published private(set) var shouldOpenPlayback: Bool = false
@@ -71,6 +71,10 @@ final class NotificationManager: NSObject, ObservableObject {
         )
 
         UNUserNotificationCenter.current().add(request)
+    }
+
+    func consumeOpenPlaybackFlag() {
+        self.shouldOpenPlayback = false
     }
 
     func openSettingsForNotifications() {

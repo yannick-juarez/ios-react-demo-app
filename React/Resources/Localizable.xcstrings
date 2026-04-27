@@ -1,13 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "(Mockup)" : {
+
+    },
     "%@ has sent you a content to React" : {
 
     },
     "%lld" : {
 
     },
+    "A" : {
+
+    },
     "A notification will arrive in a few seconds." : {
+
+    },
+    "Add a hint..." : {
 
     },
     "Add a reply..." : {
@@ -34,10 +43,10 @@
     "Cancel recording" : {
 
     },
-    "Cette image vient du menu Partager" : {
+    "Continuer" : {
 
     },
-    "Continuer" : {
+    "Create a new group" : {
 
     },
     "DEMO PURPOSES ONLY" : {
@@ -55,19 +64,31 @@
     "Notifications are disabled. Enable them in Settings to receive a React." : {
 
     },
-    "Nouvelle photo recue" : {
-
-    },
     "Open React directly" : {
 
     },
     "Open Settings" : {
 
     },
+    "React mandatory" : {
+
+    },
+    "React request sent" : {
+
+    },
     "React sent" : {
 
     },
+    "Search (mockup)" : {
+
+    },
+    "Selected" : {
+
+    },
     "Send React Now" : {
+
+    },
+    "Share content with React" : {
 
     },
     "Switch back to sender" : {
@@ -77,6 +98,15 @@
 
     },
     "This will discard your recording." : {
+
+    },
+    "To:" : {
+
+    },
+    "Yaya" : {
+
+    },
+    "YJ" : {
 
     },
     "You are about to receive a React..." : {

@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270FFE2C2F9F653800FA0FD7 /* Share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 270FFE222F9F653800FA0FD7 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		271A009C2F9E48BF00B5CF30 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 271A009B2F9E48BF00B5CF30 /* NukeUI */; };
+		27E2FCB52F9F988E00FD7F7B /* Share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 27E2FCAB2F9F988E00FD7F7B /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		270FFE2A2F9F653800FA0FD7 /* PBXContainerItemProxy */ = {
+		27E2FCB32F9F988E00FD7F7B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 271AFED52F9E2CFC00B5CF30 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 270FFE212F9F653800FA0FD7;
+			remoteGlobalIDString = 27E2FCAA2F9F988E00FD7F7B;
 			remoteInfo = Share;
 		};
 /* End PBXContainerItemProxy section */
@@ -28,7 +28,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				270FFE2C2F9F653800FA0FD7 /* Share.appex in Embed Foundation Extensions */,
+				27E2FCB52F9F988E00FD7F7B /* Share.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,19 +36,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		270FFE222F9F653800FA0FD7 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		271AFEDD2F9E2CFC00B5CF30 /* React.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = React.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E2FCAB2F9F988E00FD7F7B /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		270FFE3A2F9F659500FA0FD7 /* Exceptions for "Share" folder in "Share" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"/Localized: MainInterface.storyboard",
-				ShareViewController.swift,
-			);
-			target = 270FFE212F9F653800FA0FD7 /* Share */;
-		};
 		270FFE402F9F8B2D00FA0FD7 /* Exceptions for "React" folder in "React" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -56,17 +48,29 @@
 			);
 			target = 271AFEDC2F9E2CFC00B5CF30 /* React */;
 		};
+		27E2FCB92F9F988E00FD7F7B /* Exceptions for "Share" folder in "Share" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 27E2FCAA2F9F988E00FD7F7B /* Share */;
+		};
+		27E2FDBA2F9FACE900FD7F7B /* Exceptions for "Shared" folder in "React" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/React/React.swift,
+				"Models/React/React+Samples.swift",
+				"Models/React/React+UI.swift",
+				Models/User/User.swift,
+				"Models/User/User+Samples.swift",
+				"Models/User/User+UI.swift",
+				Views/RequestReactView.swift,
+			);
+			target = 271AFEDC2F9E2CFC00B5CF30 /* React */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		270FFE382F9F658800FA0FD7 /* Share */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				270FFE3A2F9F659500FA0FD7 /* Exceptions for "Share" folder in "Share" target */,
-			);
-			path = Share;
-			sourceTree = "<group>";
-		};
 		271AFEDF2F9E2CFC00B5CF30 /* React */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -75,21 +79,37 @@
 			path = React;
 			sourceTree = "<group>";
 		};
+		27E2FCAC2F9F988E00FD7F7B /* Share */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				27E2FCB92F9F988E00FD7F7B /* Exceptions for "Share" folder in "Share" target */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		27E2FCFF2F9FAB3F00FD7F7B /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				27E2FDBA2F9FACE900FD7F7B /* Exceptions for "Shared" folder in "React" target */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		270FFE1F2F9F653800FA0FD7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		271AFEDA2F9E2CFC00B5CF30 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				271A009C2F9E48BF00B5CF30 /* NukeUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27E2FCA82F9F988E00FD7F7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,8 +119,9 @@
 		271AFED42F9E2CFC00B5CF30 = {
 			isa = PBXGroup;
 			children = (
+				27E2FCFF2F9FAB3F00FD7F7B /* Shared */,
 				271AFEDF2F9E2CFC00B5CF30 /* React */,
-				270FFE382F9F658800FA0FD7 /* Share */,
+				27E2FCAC2F9F988E00FD7F7B /* Share */,
 				271AFEDE2F9E2CFC00B5CF30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				271AFEDD2F9E2CFC00B5CF30 /* React.app */,
-				270FFE222F9F653800FA0FD7 /* Share.appex */,
+				27E2FCAB2F9F988E00FD7F7B /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,25 +138,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		270FFE212F9F653800FA0FD7 /* Share */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 270FFE312F9F653800FA0FD7 /* Build configuration list for PBXNativeTarget "Share" */;
-			buildPhases = (
-				270FFE1E2F9F653800FA0FD7 /* Sources */,
-				270FFE1F2F9F653800FA0FD7 /* Frameworks */,
-				270FFE202F9F653800FA0FD7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Share;
-			packageProductDependencies = (
-			);
-			productName = Share;
-			productReference = 270FFE222F9F653800FA0FD7 /* Share.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		271AFEDC2F9E2CFC00B5CF30 /* React */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 271AFEE82F9E2CFE00B5CF30 /* Build configuration list for PBXNativeTarget "React" */;
@@ -148,7 +150,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				270FFE2B2F9F653800FA0FD7 /* PBXTargetDependency */,
+				27E2FCB42F9F988E00FD7F7B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				271AFEDF2F9E2CFC00B5CF30 /* React */,
@@ -161,6 +163,29 @@
 			productReference = 271AFEDD2F9E2CFC00B5CF30 /* React.app */;
 			productType = "com.apple.product-type.application";
 		};
+		27E2FCAA2F9F988E00FD7F7B /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27E2FCB62F9F988E00FD7F7B /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				27E2FCA72F9F988E00FD7F7B /* Sources */,
+				27E2FCA82F9F988E00FD7F7B /* Frameworks */,
+				27E2FCA92F9F988E00FD7F7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				27E2FCAC2F9F988E00FD7F7B /* Share */,
+				27E2FCFF2F9FAB3F00FD7F7B /* Shared */,
+			);
+			name = Share;
+			packageProductDependencies = (
+			);
+			productName = Share;
+			productReference = 27E2FCAB2F9F988E00FD7F7B /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -168,13 +193,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
-					270FFE212F9F653800FA0FD7 = {
-						CreatedOnToolsVersion = 26.3;
-					};
 					271AFEDC2F9E2CFC00B5CF30 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+					27E2FCAA2F9F988E00FD7F7B = {
 						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
@@ -197,20 +222,20 @@
 			projectRoot = "";
 			targets = (
 				271AFEDC2F9E2CFC00B5CF30 /* React */,
-				270FFE212F9F653800FA0FD7 /* Share */,
+				27E2FCAA2F9F988E00FD7F7B /* Share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		270FFE202F9F653800FA0FD7 /* Resources */ = {
+		271AFEDB2F9E2CFC00B5CF30 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		271AFEDB2F9E2CFC00B5CF30 /* Resources */ = {
+		27E2FCA92F9F988E00FD7F7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,14 +245,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		270FFE1E2F9F653800FA0FD7 /* Sources */ = {
+		271AFED92F9E2CFC00B5CF30 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		271AFED92F9E2CFC00B5CF30 /* Sources */ = {
+		27E2FCA72F9F988E00FD7F7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,74 +262,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		270FFE2B2F9F653800FA0FD7 /* PBXTargetDependency */ = {
+		27E2FCB42F9F988E00FD7F7B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 270FFE212F9F653800FA0FD7 /* Share */;
-			targetProxy = 270FFE2A2F9F653800FA0FD7 /* PBXContainerItemProxy */;
+			target = 27E2FCAA2F9F988E00FD7F7B /* Share */;
+			targetProxy = 27E2FCB32F9F988E00FD7F7B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		270FFE2E2F9F653800FA0FD7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C6ATNQ6UYV;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Share/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Share;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yannickjuarez.React.Share;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		270FFE2F2F9F653800FA0FD7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C6ATNQ6UYV;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Share/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Share;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yannickjuarez.React.Share;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		271AFEE62F9E2CFE00B5CF30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -504,18 +469,67 @@
 			};
 			name = Release;
 		};
+		27E2FCB72F9F988E00FD7F7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6ATNQ6UYV;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Share;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yannickjuarez.React.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27E2FCB82F9F988E00FD7F7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6ATNQ6UYV;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Share;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yannickjuarez.React.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		270FFE312F9F653800FA0FD7 /* Build configuration list for PBXNativeTarget "Share" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				270FFE2E2F9F653800FA0FD7 /* Debug */,
-				270FFE2F2F9F653800FA0FD7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		271AFED82F9E2CFC00B5CF30 /* Build configuration list for PBXProject "React" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -530,6 +544,15 @@
 			buildConfigurations = (
 				271AFEE92F9E2CFE00B5CF30 /* Debug */,
 				271AFEEA2F9E2CFE00B5CF30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27E2FCB62F9F988E00FD7F7B /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27E2FCB72F9F988E00FD7F7B /* Debug */,
+				27E2FCB82F9F988E00FD7F7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

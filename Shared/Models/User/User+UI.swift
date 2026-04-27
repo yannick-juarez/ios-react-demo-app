@@ -1,0 +1,23 @@
+//
+//  User+UI.swift
+//  React
+//
+//  Created by Yannick Juarez on 26/04/2026.
+//
+
+import SwiftUI
+
+extension User {
+
+    func Avatar(radius: CGFloat = 36) -> some View {
+        AsyncImage(url: self.profilePictureURL) { image in
+            image
+                .resizable()
+                .scaledToFill()
+        } placeholder: {
+            Color.secondary.opacity(0.2)
+        }
+        .frame(width: radius, height: radius)
+        .clipShape(Circle())
+    }
+}

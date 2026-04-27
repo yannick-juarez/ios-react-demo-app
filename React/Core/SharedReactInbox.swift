@@ -17,10 +17,16 @@ struct SharedReactInbox {
 
     struct Manifest: Codable {
         let imageFileName: String
+        let hint: String
         let createdAt: Date
     }
 
-    static func consumeLatestImage() -> UIImage? {
+    struct IncomingReactDraft {
+        let image: UIImage
+        let hint: String
+    }
+
+    static func consumeLatestDraft() -> IncomingReactDraft? {
         guard let inboxURL = inboxDirectoryURL(createIfNeeded: false) else {
             return nil
         }
@@ -43,10 +49,18 @@ struct SharedReactInbox {
         try? FileManager.default.removeItem(at: manifestURL)
         try? FileManager.default.removeItem(at: imageURL)
 
-        return image
+        return IncomingReactDraft(image: image, hint: manifest.hint)
     }
 
-    static func saveIncomingImageData(_ data: Data, preferredFileExtension: String = "jpg") throws {
+    static func consumeLatestImage() -> UIImage? {
+        consumeLatestDraft()?.image
+    }
+
+    static func saveIncomingImageData(
+        _ data: Data,
+        hint: String = "No hint",
+        preferredFileExtension: String = "jpg"
+    ) throws {
         guard let inboxURL = inboxDirectoryURL(createIfNeeded: true) else {
             throw SharedInboxError.appGroupNotFound
         }
@@ -55,7 +69,12 @@ struct SharedReactInbox {
         let imageURL = inboxURL.appendingPathComponent(fileName)
         try data.write(to: imageURL, options: .atomic)
 
-        let manifest = Manifest(imageFileName: fileName, createdAt: Date())
+        let normalizedHint = hint.trimmingCharacters(in: .whitespacesAndNewlines)
+        let manifest = Manifest(
+            imageFileName: fileName,
+            hint: normalizedHint.isEmpty ? "No hint" : normalizedHint,
+            createdAt: Date()
+        )
         let manifestData = try JSONEncoder().encode(manifest)
         let manifestURL = inboxURL.appendingPathComponent(manifestFileName)
         try manifestData.write(to: manifestURL, options: .atomic)

@@ -16,7 +16,7 @@ struct AppRootView: View {
         case confirm(react: React)
         case switchBackToSender
         case chatInbox
-        case playback
+        case playback(videoURL: URL)
     }
 
     @State var state: AppState
@@ -24,6 +24,8 @@ struct AppRootView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var sharedImage: UIImage?
+    @State private var capturedVideoURL: URL?
+    @State private var currentReact: React = .sample
 
     init() {
         self._state = State(initialValue: .react(react: .sample))
@@ -42,8 +44,8 @@ struct AppRootView: View {
                                 self.sharedImage = nil
                             }
                         },
-                        onContinue: {
-                            // The next step will create a React from this image.
+                        onContinue: { hint in
+                            self.handleContinueFromShare(hint: hint)
                         }
                     )
                 } else {
@@ -55,7 +57,9 @@ struct AppRootView: View {
             case .react(let react):
                 MainReactView(
                     react: react,
-                    onReactionCaptured: {
+                    onReactionCaptured: { url in
+                        self.capturedVideoURL = url
+                        self.currentReact = react
                         self.state = .confirm(react: react)
                     }
                 )
@@ -73,7 +77,11 @@ struct AppRootView: View {
                 SwitchBackToSenderView(
                     onSwitchToPlayback: {
                         withAnimation(.easeInOut(duration: 0.6)) {
-                            self.state = .chatInbox
+                            if let url = self.capturedVideoURL {
+                                self.state = .playback(videoURL: url)
+                            } else {
+                                self.state = .chatInbox
+                            }
                         }
                     }
                 )
@@ -87,8 +95,8 @@ struct AppRootView: View {
                     insertion: .move(edge: .leading).combined(with: .opacity),
                     removal: .move(edge: .leading).combined(with: .opacity)
                 ))
-            case .playback:
-                EmptyView()
+            case .playback(let videoURL):
+                ReactPlaybackView(react: self.currentReact, videoURL: videoURL)
             }
         }
         .environmentObject(self.notificationManager)
@@ -99,6 +107,11 @@ struct AppRootView: View {
             guard newPhase == .active else { return }
             self.consumeSharedImageIfNeeded()
         }
+        .onChange(of: self.notificationManager.shouldOpenPlayback) { shouldOpen in
+            guard shouldOpen else { return }
+            self.openLatestReactFromStorageIfNeeded()
+            self.notificationManager.consumeOpenPlaybackFlag()
+        }
         .onOpenURL { incomingURL in
             guard incomingURL.scheme == SharedReactInbox.urlScheme else { return }
             self.consumeSharedImageIfNeeded()
@@ -106,10 +119,59 @@ struct AppRootView: View {
     }
 
     private func consumeSharedImageIfNeeded() {
-        guard let image = SharedReactInbox.consumeLatestImage() else { return }
+        guard let incomingDraft = SharedReactInbox.consumeLatestDraft() else { return }
+
+        let persistedReact = (try? LocalDemoReactStore.save(
+            sharedImage: incomingDraft.image,
+            hint: incomingDraft.hint,
+            sender: .sample
+        ))
+
+        let fallbackReact = React(
+            content: URL(string: "https://picsum.photos/400/640")!,
+            hint: incomingDraft.hint.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                ? "No hint"
+                : incomingDraft.hint,
+            sender: .sample
+        )
+
         withAnimation(.easeInOut(duration: 0.3)) {
-            self.sharedImage = image
-            self.state = .share
+            let reactToDisplay = persistedReact ?? fallbackReact
+            self.currentReact = reactToDisplay
+            self.state = .react(react: reactToDisplay)
+        }
+    }
+
+    private func openLatestReactFromStorageIfNeeded() {
+        self.consumeSharedImageIfNeeded()
+
+        guard let latestReact = LocalDemoReactStore.loadLatest() else {
+            return
+        }
+
+        withAnimation(.easeInOut(duration: 0.3)) {
+            self.currentReact = latestReact
+            self.state = .react(react: latestReact)
+            self.sharedImage = nil
+        }
+    }
+
+    private func handleContinueFromShare(hint: String) {
+        guard let sharedImage else { return }
+
+        let persistedReact = (try? LocalDemoReactStore.save(sharedImage: sharedImage, hint: hint))
+            .flatMap { _ in LocalDemoReactStore.loadLatest() }
+
+        withAnimation(.easeInOut(duration: 0.3)) {
+            let reactToDisplay = persistedReact ?? React(
+                content: URL(string: "https://picsum.photos/400/640")!,
+                hint: hint.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "No hint" : hint,
+                sender: .sample
+            )
+
+            self.currentReact = reactToDisplay
+            self.state = .react(react: reactToDisplay)
+            self.sharedImage = nil
         }
     }
 }

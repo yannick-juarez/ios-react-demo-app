@@ -114,7 +114,7 @@ struct ChatInboxView: View {
             }
         }
         .sheet(isPresented: self.$isPlaybackPresented) {
-            ReactPlaybackView()
+            ReactPlaybackView(react: .sample, videoURL: URL(string: "file:///dev/null")!)
         }
     }
 }
@@ -124,4 +124,3 @@ struct ChatInboxView: View {
         .environmentObject(NotificationManager())
         .preferredColorScheme(.dark)
 }
-

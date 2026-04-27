@@ -6,10 +6,49 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+private final class LoopingPlayerUIView: UIView {
+    private let playerLayer = AVPlayerLayer()
+    private var playerLooper: AVPlayerLooper?
+    private var player: AVQueuePlayer?
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.playerLayer.frame = self.bounds
+    }
+
+    func configure(url: URL) {
+        let item = AVPlayerItem(url: url)
+        let queuePlayer = AVQueuePlayer()
+        self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
+        self.player = queuePlayer
+
+        self.playerLayer.player = queuePlayer
+        self.playerLayer.videoGravity = .resizeAspectFill
+        self.layer.addSublayer(self.playerLayer)
+
+        queuePlayer.play()
+    }
+}
+
+private struct VideoLoopPlayerView: UIViewRepresentable {
+    let url: URL
+
+    func makeUIView(context: Context) -> LoopingPlayerUIView {
+        let view = LoopingPlayerUIView()
+        view.backgroundColor = .black
+        view.configure(url: self.url)
+        return view
+    }
+
+    func updateUIView(_ uiView: LoopingPlayerUIView, context: Context) {}
+}
 
 struct ReactPlaybackView: View {
 
-    @State var react: React = .sample
+    @State var react: React
+    let videoURL: URL
 
     @State private var replyText: String = ""
 
@@ -34,8 +73,9 @@ struct ReactPlaybackView: View {
                     }
                     .clipShape(RoundedRectangle(cornerRadius: self.cornerRadius))
 
-                // To replace by video playback
-                react.sender.Avatar(radius: self.previewRadius)
+                VideoLoopPlayerView(url: self.videoURL)
+                    .frame(width: self.previewRadius * 2, height: self.previewRadius * 2)
+                    .clipShape(Circle())
                     .overlay {
                         Circle()
                             .stroke(.primary, lineWidth: 2)
@@ -65,6 +105,6 @@ struct ReactPlaybackView: View {
 }
 
 #Preview {
-    ReactPlaybackView()
+    ReactPlaybackView(react: .sample, videoURL: URL(string: "file:///dev/null")!)
         .preferredColorScheme(.dark)
 }
