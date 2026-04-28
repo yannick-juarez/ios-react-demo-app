@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		271A009C2F9E48BF00B5CF30 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 271A009B2F9E48BF00B5CF30 /* NukeUI */; };
 		27E2FCB52F9F988E00FD7F7B /* Share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 27E2FCAB2F9F988E00FD7F7B /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B04000A2FAA000000000001 /* CoreDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000001 /* CoreDomain */; };
+		2B04000A2FAA000000000002 /* CorePersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000002 /* CorePersistence */; };
+		2B04000A2FAA000000000003 /* CoreInfrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000003 /* CoreInfrastructure */; };
+		2B04000A2FAA000000000004 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000004 /* DesignSystem */; };
+		2B04000A2FAA000000000005 /* CameraFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000005 /* CameraFeature */; };
+		2B04000A2FAA000000000006 /* ReactionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000006 /* ReactionFeature */; };
+		2B04000A2FAA000000000007 /* ShareImportFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000007 /* ShareImportFeature */; };
+		2B05000A2FAA000000000007 /* ShareImportFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B03000A2FAA000000000007 /* ShareImportFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,29 +52,16 @@
 		270FFE402F9F8B2D00FA0FD7 /* Exceptions for "React" folder in "React" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = 271AFEDC2F9E2CFC00B5CF30 /* React */;
 		};
-		27E2FCB92F9F988E00FD7F7B /* Exceptions for "Share" folder in "Share" target */ = {
+		27E2FCB92F9F988E00FD7F7B /* Exceptions for "ShareExtension" folder in "Share" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = 27E2FCAA2F9F988E00FD7F7B /* Share */;
-		};
-		27E2FDBA2F9FACE900FD7F7B /* Exceptions for "Shared" folder in "React" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Models/React/React.swift,
-				"Models/React/React+Samples.swift",
-				"Models/React/React+UI.swift",
-				Models/User/User.swift,
-				"Models/User/User+Samples.swift",
-				"Models/User/User+UI.swift",
-				Views/RequestReactView.swift,
-			);
-			target = 271AFEDC2F9E2CFC00B5CF30 /* React */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -79,20 +74,17 @@
 			path = React;
 			sourceTree = "<group>";
 		};
-		27E2FCAC2F9F988E00FD7F7B /* Share */ = {
+		27E2FCAC2F9F988E00FD7F7B /* ShareExtension */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				27E2FCB92F9F988E00FD7F7B /* Exceptions for "Share" folder in "Share" target */,
+				27E2FCB92F9F988E00FD7F7B /* Exceptions for "ShareExtension" folder in "Share" target */,
 			);
-			path = Share;
+			path = ShareExtension;
 			sourceTree = "<group>";
 		};
-		27E2FCFF2F9FAB3F00FD7F7B /* Shared */ = {
+		2B06000A2FAA000000000001 /* Apps/ReactionApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				27E2FDBA2F9FACE900FD7F7B /* Exceptions for "Shared" folder in "React" target */,
-			);
-			path = Shared;
+			path = Apps/ReactionApp;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -103,6 +95,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				271A009C2F9E48BF00B5CF30 /* NukeUI in Frameworks */,
+				2B04000A2FAA000000000001 /* CoreDomain in Frameworks */,
+				2B04000A2FAA000000000002 /* CorePersistence in Frameworks */,
+				2B04000A2FAA000000000003 /* CoreInfrastructure in Frameworks */,
+				2B04000A2FAA000000000004 /* DesignSystem in Frameworks */,
+				2B04000A2FAA000000000005 /* CameraFeature in Frameworks */,
+				2B04000A2FAA000000000006 /* ReactionFeature in Frameworks */,
+				2B04000A2FAA000000000007 /* ShareImportFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B05000A2FAA000000000007 /* ShareImportFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +119,9 @@
 		271AFED42F9E2CFC00B5CF30 = {
 			isa = PBXGroup;
 			children = (
-				27E2FCFF2F9FAB3F00FD7F7B /* Shared */,
+				2B06000A2FAA000000000001 /* Apps/ReactionApp */,
 				271AFEDF2F9E2CFC00B5CF30 /* React */,
-				27E2FCAC2F9F988E00FD7F7B /* Share */,
+				27E2FCAC2F9F988E00FD7F7B /* ShareExtension */,
 				271AFEDE2F9E2CFC00B5CF30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,10 +154,18 @@
 			);
 			fileSystemSynchronizedGroups = (
 				271AFEDF2F9E2CFC00B5CF30 /* React */,
+				2B06000A2FAA000000000001 /* Apps/ReactionApp */,
 			);
 			name = React;
 			packageProductDependencies = (
 				271A009B2F9E48BF00B5CF30 /* NukeUI */,
+				2B02000A2FAA000000000001 /* CoreDomain */,
+				2B02000A2FAA000000000002 /* CorePersistence */,
+				2B02000A2FAA000000000003 /* CoreInfrastructure */,
+				2B02000A2FAA000000000004 /* DesignSystem */,
+				2B02000A2FAA000000000005 /* CameraFeature */,
+				2B02000A2FAA000000000006 /* ReactionFeature */,
+				2B02000A2FAA000000000007 /* ShareImportFeature */,
 			);
 			productName = React;
 			productReference = 271AFEDD2F9E2CFC00B5CF30 /* React.app */;
@@ -176,8 +184,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				27E2FCAC2F9F988E00FD7F7B /* Share */,
-				27E2FCFF2F9FAB3F00FD7F7B /* Shared */,
+				27E2FCAC2F9F988E00FD7F7B /* ShareExtension */,
 			);
 			name = Share;
 			packageProductDependencies = (
@@ -215,6 +222,13 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				271A009A2F9E48BF00B5CF30 /* XCRemoteSwiftPackageReference "Nuke" */,
+				2B01000A2FAA000000000001 /* XCLocalSwiftPackageReference "Packages/CoreDomain" */,
+				2B01000A2FAA000000000002 /* XCLocalSwiftPackageReference "Packages/CorePersistence" */,
+				2B01000A2FAA000000000003 /* XCLocalSwiftPackageReference "Packages/CoreInfrastructure" */,
+				2B01000A2FAA000000000004 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */,
+				2B01000A2FAA000000000005 /* XCLocalSwiftPackageReference "Packages/CameraFeature" */,
+				2B01000A2FAA000000000006 /* XCLocalSwiftPackageReference "Packages/ReactionFeature" */,
+				2B01000A2FAA000000000007 /* XCLocalSwiftPackageReference "Packages/ShareImportFeature" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 271AFEDE2F9E2CFC00B5CF30 /* Products */;
@@ -398,21 +412,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = React/React.entitlements;
+				CODE_SIGN_ENTITLEMENTS = React/Resources/React.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = React/Info.plist;
+				INFOPLIST_FILE = React/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleURLTypes = "{\n    CFBundleTypeRole = Editor;\n    CFBundleURLName = \"com.yannickjuarez.React\";\n    CFBundleURLSchemes =     (\n        reactdemo\n    );\n}";
 				INFOPLIST_KEY_NSCameraUsageDescription = "La camera est necessaire pour enregistrer votre reaction.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Le micro est necessaire pour enregistrer votre reaction.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -436,21 +450,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = React/React.entitlements;
+				CODE_SIGN_ENTITLEMENTS = React/Resources/React.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = React/Info.plist;
+				INFOPLIST_FILE = React/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleURLTypes = "{\n    CFBundleTypeRole = Editor;\n    CFBundleURLName = \"com.yannickjuarez.React\";\n    CFBundleURLSchemes =     (\n        reactdemo\n    );\n}";
 				INFOPLIST_KEY_NSCameraUsageDescription = "La camera est necessaire pour enregistrer votre reaction.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Le micro est necessaire pour enregistrer votre reaction.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -472,14 +486,15 @@
 		27E2FCB72F9F988E00FD7F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Share;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -501,14 +516,15 @@
 		27E2FCB82F9F988E00FD7F7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Share/Info.plist;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Share;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -559,6 +575,37 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		2B01000A2FAA000000000001 /* XCLocalSwiftPackageReference "Packages/CoreDomain" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CoreDomain;
+		};
+		2B01000A2FAA000000000002 /* XCLocalSwiftPackageReference "Packages/CorePersistence" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CorePersistence;
+		};
+		2B01000A2FAA000000000003 /* XCLocalSwiftPackageReference "Packages/CoreInfrastructure" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CoreInfrastructure;
+		};
+		2B01000A2FAA000000000004 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DesignSystem;
+		};
+		2B01000A2FAA000000000005 /* XCLocalSwiftPackageReference "Packages/CameraFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CameraFeature;
+		};
+		2B01000A2FAA000000000006 /* XCLocalSwiftPackageReference "Packages/ReactionFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/ReactionFeature;
+		};
+		2B01000A2FAA000000000007 /* XCLocalSwiftPackageReference "Packages/ShareImportFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/ShareImportFeature;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		271A009A2F9E48BF00B5CF30 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -575,6 +622,46 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 271A009A2F9E48BF00B5CF30 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
+		};
+		2B02000A2FAA000000000001 /* CoreDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000001 /* XCLocalSwiftPackageReference "Packages/CoreDomain" */;
+			productName = CoreDomain;
+		};
+		2B02000A2FAA000000000002 /* CorePersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000002 /* XCLocalSwiftPackageReference "Packages/CorePersistence" */;
+			productName = CorePersistence;
+		};
+		2B02000A2FAA000000000003 /* CoreInfrastructure */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000003 /* XCLocalSwiftPackageReference "Packages/CoreInfrastructure" */;
+			productName = CoreInfrastructure;
+		};
+		2B02000A2FAA000000000004 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000004 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */;
+			productName = DesignSystem;
+		};
+		2B02000A2FAA000000000005 /* CameraFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000005 /* XCLocalSwiftPackageReference "Packages/CameraFeature" */;
+			productName = CameraFeature;
+		};
+		2B02000A2FAA000000000006 /* ReactionFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000006 /* XCLocalSwiftPackageReference "Packages/ReactionFeature" */;
+			productName = ReactionFeature;
+		};
+		2B02000A2FAA000000000007 /* ShareImportFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000007 /* XCLocalSwiftPackageReference "Packages/ShareImportFeature" */;
+			productName = ShareImportFeature;
+		};
+		2B03000A2FAA000000000007 /* ShareImportFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000007 /* XCLocalSwiftPackageReference "Packages/ShareImportFeature" */;
+			productName = ShareImportFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

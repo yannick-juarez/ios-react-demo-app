@@ -59,9 +59,9 @@
       launchAutomaticallySubstyle = "2"
       queueDebuggingEnableBacktraceRecording = "Yes">
       <RemoteRunnable
-         runnableDebuggingMode = "1"
-         BundleIdentifier = "com.apple.mobilesafari"
-         RemotePath = "/Library/Developer/CoreSimulator/Volumes/iOS_23E254a/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.4.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSafari.app">
+         runnableDebuggingMode = "0"
+         BundleIdentifier = "com.apple.mobileslideshow"
+         RemotePath = "/var/containers/Bundle/Application/EEFA2E08-8B45-402D-A497-E815239DB5DC/Photos.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference

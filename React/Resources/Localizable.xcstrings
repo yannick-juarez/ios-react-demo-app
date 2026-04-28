@@ -1,118 +1,28 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "(Mockup)" : {
+    "1. Go to Photos app" : {
 
     },
-    "%@ has sent you a content to React" : {
+    "2. Click on a picture you want to share" : {
 
     },
-    "%lld" : {
+    "3. Select React app" : {
 
     },
-    "A" : {
+    "Allow" : {
 
     },
-    "A notification will arrive in a few seconds." : {
-
-    },
-    "Add a hint..." : {
-
-    },
-    "Add a reply..." : {
-
-    },
-    "Allow Camera & Microphone Access" : {
-
-    },
-    "Allow Notifications" : {
-
-    },
-    "Allow notifications so Yannick can send you a React." : {
-
-    },
-    "Annuler" : {
-
-    },
-    "Are you sure?" : {
-
-    },
-    "Cancel" : {
-
-    },
-    "Cancel recording" : {
-
-    },
-    "Continuer" : {
-
-    },
-    "Create a new group" : {
-
-    },
-    "DEMO PURPOSES ONLY" : {
-
-    },
-    "Hold the record button to unlock this content" : {
-
-    },
-    "Keep holding to unlock" : {
-
-    },
-    "Keep recording" : {
-
-    },
-    "Notifications are disabled. Enable them in Settings to receive a React." : {
-
-    },
-    "Open React directly" : {
+    "Notifications" : {
 
     },
     "Open Settings" : {
 
     },
-    "React mandatory" : {
+    "This demo app needs notifications permissions" : {
 
     },
-    "React request sent" : {
-
-    },
-    "React sent" : {
-
-    },
-    "Search (mockup)" : {
-
-    },
-    "Selected" : {
-
-    },
-    "Send React Now" : {
-
-    },
-    "Share content with React" : {
-
-    },
-    "Switch back to sender" : {
-
-    },
-    "Tap it to open your React." : {
-
-    },
-    "This will discard your recording." : {
-
-    },
-    "To:" : {
-
-    },
-    "Yaya" : {
-
-    },
-    "YJ" : {
-
-    },
-    "You are about to receive a React..." : {
-
-    },
-    "Your reaction will be sent to %@" : {
+    "Welcome on React feature demo app" : {
 
     }
   },
