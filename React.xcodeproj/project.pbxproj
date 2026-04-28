@@ -16,6 +16,7 @@
 		2B04000A2FAA000000000005 /* CameraFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000005 /* CameraFeature */; };
 		2B04000A2FAA000000000006 /* ReactionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000006 /* ReactionFeature */; };
 		2B04000A2FAA000000000007 /* ShareImportFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000007 /* ShareImportFeature */; };
+		2B04000A2FAA000000000008 /* AnalyticsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2B02000A2FAA000000000008 /* AnalyticsKit */; };
 		2B05000A2FAA000000000007 /* ShareImportFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2B03000A2FAA000000000007 /* ShareImportFeature */; };
 /* End PBXBuildFile section */
 
@@ -49,42 +50,34 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		270FFE402F9F8B2D00FA0FD7 /* Exceptions for "React" folder in "React" target */ = {
+		270F019B2FA12F7700FA0FD7 /* Exceptions for "Apps" folder in "React" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Info.plist,
+				"/Localized: ShareExtension/MainInterface.storyboard",
+				DemoApp/Resources/Info.plist,
+				ShareExtension/Info.plist,
+				ShareExtension/ShareViewController.swift,
 			);
 			target = 271AFEDC2F9E2CFC00B5CF30 /* React */;
 		};
-		27E2FCB92F9F988E00FD7F7B /* Exceptions for "ShareExtension" folder in "Share" target */ = {
+		270F019C2FA12F7700FA0FD7 /* Exceptions for "Apps" folder in "Share" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				"/Localized: ShareExtension/MainInterface.storyboard",
+				ShareExtension/ShareViewController.swift,
 			);
 			target = 27E2FCAA2F9F988E00FD7F7B /* Share */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		271AFEDF2F9E2CFC00B5CF30 /* React */ = {
+		270F01982FA12F5F00FA0FD7 /* Apps */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				270FFE402F9F8B2D00FA0FD7 /* Exceptions for "React" folder in "React" target */,
+				270F019B2FA12F7700FA0FD7 /* Exceptions for "Apps" folder in "React" target */,
+				270F019C2FA12F7700FA0FD7 /* Exceptions for "Apps" folder in "Share" target */,
 			);
-			path = React;
-			sourceTree = "<group>";
-		};
-		27E2FCAC2F9F988E00FD7F7B /* ShareExtension */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				27E2FCB92F9F988E00FD7F7B /* Exceptions for "ShareExtension" folder in "Share" target */,
-			);
-			path = ShareExtension;
-			sourceTree = "<group>";
-		};
-		2B06000A2FAA000000000001 /* Apps/ReactionApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Apps/ReactionApp;
+			path = Apps;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -102,6 +95,7 @@
 				2B04000A2FAA000000000005 /* CameraFeature in Frameworks */,
 				2B04000A2FAA000000000006 /* ReactionFeature in Frameworks */,
 				2B04000A2FAA000000000007 /* ShareImportFeature in Frameworks */,
+				2B04000A2FAA000000000008 /* AnalyticsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +113,7 @@
 		271AFED42F9E2CFC00B5CF30 = {
 			isa = PBXGroup;
 			children = (
-				2B06000A2FAA000000000001 /* Apps/ReactionApp */,
-				271AFEDF2F9E2CFC00B5CF30 /* React */,
-				27E2FCAC2F9F988E00FD7F7B /* ShareExtension */,
+				270F01982FA12F5F00FA0FD7 /* Apps */,
 				271AFEDE2F9E2CFC00B5CF30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,8 +145,7 @@
 				27E2FCB42F9F988E00FD7F7B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				271AFEDF2F9E2CFC00B5CF30 /* React */,
-				2B06000A2FAA000000000001 /* Apps/ReactionApp */,
+				270F01982FA12F5F00FA0FD7 /* Apps */,
 			);
 			name = React;
 			packageProductDependencies = (
@@ -166,6 +157,7 @@
 				2B02000A2FAA000000000005 /* CameraFeature */,
 				2B02000A2FAA000000000006 /* ReactionFeature */,
 				2B02000A2FAA000000000007 /* ShareImportFeature */,
+				2B02000A2FAA000000000008 /* AnalyticsKit */,
 			);
 			productName = React;
 			productReference = 271AFEDD2F9E2CFC00B5CF30 /* React.app */;
@@ -182,9 +174,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				27E2FCAC2F9F988E00FD7F7B /* ShareExtension */,
 			);
 			name = Share;
 			packageProductDependencies = (
@@ -229,6 +218,7 @@
 				2B01000A2FAA000000000005 /* XCLocalSwiftPackageReference "Packages/CameraFeature" */,
 				2B01000A2FAA000000000006 /* XCLocalSwiftPackageReference "Packages/ReactionFeature" */,
 				2B01000A2FAA000000000007 /* XCLocalSwiftPackageReference "Packages/ShareImportFeature" */,
+				2B01000A2FAA000000000008 /* XCLocalSwiftPackageReference "Packages/AnalyticsKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 271AFEDE2F9E2CFC00B5CF30 /* Products */;
@@ -412,13 +402,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = React/Resources/React.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/DemoApp/Resources/DemoApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = React/Resources/Info.plist;
+				INFOPLIST_FILE = Apps/DemoApp/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleURLTypes = "{\n    CFBundleTypeRole = Editor;\n    CFBundleURLName = \"com.yannickjuarez.React\";\n    CFBundleURLSchemes =     (\n        reactdemo\n    );\n}";
 				INFOPLIST_KEY_NSCameraUsageDescription = "La camera est necessaire pour enregistrer votre reaction.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Le micro est necessaire pour enregistrer votre reaction.";
@@ -450,13 +440,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = React/Resources/React.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/DemoApp/Resources/DemoApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = React/Resources/Info.plist;
+				INFOPLIST_FILE = Apps/DemoApp/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleURLTypes = "{\n    CFBundleTypeRole = Editor;\n    CFBundleURLName = \"com.yannickjuarez.React\";\n    CFBundleURLSchemes =     (\n        reactdemo\n    );\n}";
 				INFOPLIST_KEY_NSCameraUsageDescription = "La camera est necessaire pour enregistrer votre reaction.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Le micro est necessaire pour enregistrer votre reaction.";
@@ -486,12 +476,12 @@
 		27E2FCB72F9F988E00FD7F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ShareExtension/Share.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/ShareExtension/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_FILE = Apps/ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Share;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
@@ -516,12 +506,12 @@
 		27E2FCB82F9F988E00FD7F7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ShareExtension/Share.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/ShareExtension/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C6ATNQ6UYV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_FILE = Apps/ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Share;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
@@ -604,6 +594,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/ShareImportFeature;
 		};
+		2B01000A2FAA000000000008 /* XCLocalSwiftPackageReference "Packages/AnalyticsKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/AnalyticsKit;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -657,6 +651,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B01000A2FAA000000000007 /* XCLocalSwiftPackageReference "Packages/ShareImportFeature" */;
 			productName = ShareImportFeature;
+		};
+		2B02000A2FAA000000000008 /* AnalyticsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B01000A2FAA000000000008 /* XCLocalSwiftPackageReference "Packages/AnalyticsKit" */;
+			productName = AnalyticsKit;
 		};
 		2B03000A2FAA000000000007 /* ShareImportFeature */ = {
 			isa = XCSwiftPackageProductDependency;

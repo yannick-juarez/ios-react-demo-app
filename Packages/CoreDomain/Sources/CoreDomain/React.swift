@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct React: Codable, Sendable {
+public struct React: Codable, Sendable, Equatable {
 
     public var id: UUID
     public var content: URL

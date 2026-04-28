@@ -13,13 +13,25 @@
     "Allow" : {
 
     },
+    "Close" : {
+
+    },
     "Notifications" : {
 
     },
     "Open Settings" : {
 
     },
+    "Reaction sent" : {
+
+    },
+    "Sending your reaction..." : {
+
+    },
     "This demo app needs notifications permissions" : {
+
+    },
+    "Unable to continue this reaction" : {
 
     },
     "Welcome on React feature demo app" : {

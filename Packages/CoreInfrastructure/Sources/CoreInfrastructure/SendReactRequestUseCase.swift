@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 import CoreDomain
 
 public struct SendReactRequestUseCase: SendReactRequestUseCaseProtocol {
@@ -17,7 +16,7 @@ public struct SendReactRequestUseCase: SendReactRequestUseCaseProtocol {
         self.repository = repository
     }
 
-    public func execute(sharedImage: UIImage, hint: String, sender: User = .sample) throws -> React {
-        try self.repository.saveIncomingReact(sharedImage: sharedImage, hint: hint, sender: sender)
+    public func execute(imageData: Data, hint: String, sender: User = .sample) throws -> React {
+        try self.repository.saveIncomingReact(imageData: imageData, hint: hint, sender: sender)
     }
 }

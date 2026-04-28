@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User: Codable, Sendable {
+public struct User: Codable, Sendable, Equatable {
 
     public var id: UUID
     public var username: String

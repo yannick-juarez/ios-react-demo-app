@@ -11,19 +11,17 @@ import UniformTypeIdentifiers
 import UserNotifications
 import os
 import CoreDomain
-import CoreInfrastructure
+import CorePersistence
 import DesignSystem
+import AnalyticsKit
 
 /// Shared extension controller logic hosted in React module.
 open class ReactShareViewController: UIViewController {
 
     private let logger = Logger(subsystem: "com.yannickjuarez.React.ShareExtension", category: "Share")
 
-    private let appGroupIdentifier = "group.com.yannickjuarez.React"
-    private let inboxFolderName = "SharedReactInbox"
-    private let manifestFileName = "latest.json"
-
     struct Manifest: Codable {
+        let shareID: String
         let imageFileName: String
         let hint: String
         let createdAt: Date
@@ -44,6 +42,15 @@ open class ReactShareViewController: UIViewController {
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        AnalyticsService.shared.track(
+            ReactAnalyticsEvents.shareExtensionOpened,
+            properties: [
+                "source_app": "unknown",
+                "content_type": "image",
+                "os_version": UIDevice.current.systemVersion,
+                "app_version": Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown",
+            ]
+        )
         Task { await self.handleShare() }
     }
 
@@ -71,8 +78,31 @@ open class ReactShareViewController: UIViewController {
             onContinue: { [weak self] hint in
                 guard let self else { return }
                 do {
-                    try self.persistImageToAppGroup(payload, hint: hint)
-                    self.scheduleIncomingReactNotification()
+                    let shareID = try self.persistImageToAppGroup(payload, hint: hint)
+                    AnalyticsService.shared.track(
+                        ReactAnalyticsEvents.shareTargetSelected,
+                        properties: [
+                            "share_id": shareID,
+                            "sender_id": "current_user",
+                            "receiver_id": "sample_user",
+                            "source_app": "unknown",
+                            "content_type": "image",
+                            "candidate_count": "1",
+                        ]
+                    )
+                    AnalyticsService.shared.track(
+                        ReactAnalyticsEvents.shareSent,
+                        properties: [
+                            "share_id": shareID,
+                            "sender_id": "current_user",
+                            "receiver_id": "sample_user",
+                            "source_app": "unknown",
+                            "content_type": "image",
+                            "payload_size_bucket": ReactAnalyticsEvents.payloadSizeBucket(bytes: payload.data.count),
+                            "sent_at": ISO8601DateFormatter().string(from: Date()),
+                        ]
+                    )
+                    self.scheduleIncomingReactNotification(shareID: shareID)
                     self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
                 } catch {
                     self.complete(withError: "Impossible de sauvegarder cette image.")
@@ -280,31 +310,15 @@ open class ReactShareViewController: UIViewController {
         return nil
     }
 
-    private func persistImageToAppGroup(_ payload: SharedImagePayload, hint: String) throws {
-        guard let containerURL = FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: self.appGroupIdentifier
-        ) else {
-            throw ShareError.appGroupNotFound
-        }
-
-        let inboxURL = containerURL.appendingPathComponent(self.inboxFolderName, isDirectory: true)
-        try FileManager.default.createDirectory(at: inboxURL, withIntermediateDirectories: true)
-
-        let sanitizedExtension = payload.fileExtension.isEmpty ? "jpg" : payload.fileExtension
-        let imageFileName = "incoming-\(UUID().uuidString).\(sanitizedExtension)"
-        try payload.data.write(to: inboxURL.appendingPathComponent(imageFileName), options: .atomic)
-
-        let normalizedHint = hint.trimmingCharacters(in: .whitespacesAndNewlines)
-        let manifest = Manifest(
-            imageFileName: imageFileName,
-            hint: normalizedHint.isEmpty ? "No hint" : normalizedHint,
-            createdAt: Date()
+    private func persistImageToAppGroup(_ payload: SharedImagePayload, hint: String) throws -> String {
+        try AppGroupReactInboxStore.saveIncomingImageAndReturnShareID(
+            payload.data,
+            hint: hint,
+            preferredFileExtension: payload.fileExtension.isEmpty ? "jpg" : payload.fileExtension
         )
-        let manifestData = try JSONEncoder().encode(manifest)
-        try manifestData.write(to: inboxURL.appendingPathComponent(self.manifestFileName), options: .atomic)
     }
 
-    private func scheduleIncomingReactNotification() {
+    private func scheduleIncomingReactNotification(shareID: String) {
         let content = UNMutableNotificationContent()
         content.title = "Yaya"
         content.body = "Yaya vous a envoye un React Content"
@@ -322,6 +336,16 @@ open class ReactShareViewController: UIViewController {
             withIdentifiers: [Self.reactNotificationIdentifier]
         )
         UNUserNotificationCenter.current().add(request)
+
+        AnalyticsService.shared.track(
+            ReactAnalyticsEvents.shareNotificationSent,
+            properties: [
+                "share_id": shareID,
+                "receiver_id": "sample_user",
+                "send_channel": "push",
+                "delivery_status": "sent",
+            ]
+        )
     }
 
     private func complete(withError description: String) {

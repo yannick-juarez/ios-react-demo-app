@@ -17,12 +17,14 @@ public struct AppGroupReactInboxStore {
     private static let manifestFileName = "latest.json"
 
     public struct Manifest: Codable {
+        public let shareID: String?
         public let imageFileName: String
         public let hint: String
         public let createdAt: Date
     }
 
     public struct IncomingReactDraft {
+        public let shareID: String
         public let image: UIImage
         public let hint: String
     }
@@ -59,7 +61,11 @@ public struct AppGroupReactInboxStore {
         try? FileManager.default.removeItem(at: manifestURL)
         try? FileManager.default.removeItem(at: imageURL)
 
-        return IncomingReactDraft(image: image, hint: manifest.hint)
+        return IncomingReactDraft(
+            shareID: manifest.shareID ?? UUID().uuidString,
+            image: image,
+            hint: manifest.hint
+        )
     }
 
     public static func consumeLatestImage() -> UIImage? {
@@ -68,6 +74,7 @@ public struct AppGroupReactInboxStore {
 
     public static func saveIncomingImageData(
         _ data: Data,
+        shareID: String? = nil,
         hint: String = "No hint",
         preferredFileExtension: String = "jpg"
     ) throws {
@@ -81,6 +88,7 @@ public struct AppGroupReactInboxStore {
 
         let normalizedHint = hint.trimmingCharacters(in: .whitespacesAndNewlines)
         let manifest = Manifest(
+            shareID: shareID,
             imageFileName: fileName,
             hint: normalizedHint.isEmpty ? "No hint" : normalizedHint,
             createdAt: Date()
@@ -88,6 +96,17 @@ public struct AppGroupReactInboxStore {
         let manifestData = try JSONEncoder().encode(manifest)
         let manifestURL = inboxURL.appendingPathComponent(manifestFileName)
         try manifestData.write(to: manifestURL, options: .atomic)
+    }
+
+    /// Save and return the generated share ID (used by Share Extension).
+    public static func saveIncomingImageAndReturnShareID(
+        _ data: Data,
+        hint: String = "No hint",
+        preferredFileExtension: String = "jpg"
+    ) throws -> String {
+        let shareID = UUID().uuidString
+        try saveIncomingImageData(data, shareID: shareID, hint: hint, preferredFileExtension: preferredFileExtension)
+        return shareID
     }
 
     private static func inboxDirectoryURL(createIfNeeded: Bool) -> URL? {
@@ -115,6 +134,7 @@ public struct SharedReactInbox {
     public static let urlScheme = AppGroupReactInboxStore.urlScheme
 
     public struct IncomingReactDraft {
+        public let shareID: String
         public let image: UIImage
         public let hint: String
     }
@@ -127,7 +147,7 @@ public struct SharedReactInbox {
         guard let draft = AppGroupReactInboxStore.consumeLatestDraft() else {
             return nil
         }
-        return IncomingReactDraft(image: draft.image, hint: draft.hint)
+        return IncomingReactDraft(shareID: draft.shareID, image: draft.image, hint: draft.hint)
     }
 
     public static func consumeLatestImage() -> UIImage? {
@@ -136,11 +156,13 @@ public struct SharedReactInbox {
 
     public static func saveIncomingImageData(
         _ data: Data,
+        shareID: String? = nil,
         hint: String = "No hint",
         preferredFileExtension: String = "jpg"
     ) throws {
         try AppGroupReactInboxStore.saveIncomingImageData(
             data,
+            shareID: shareID,
             hint: hint,
             preferredFileExtension: preferredFileExtension
         )

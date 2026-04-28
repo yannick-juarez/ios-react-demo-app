@@ -7,11 +7,31 @@
 
 import Foundation
 
+public struct ReactMainPreviewState {
+	public var isRecording: Bool
+	public var isRevealed: Bool
+	public var canStartRecording: Bool
+	public var countdownValue: Int?
+
+	public init(
+		isRecording: Bool,
+		isRevealed: Bool,
+		canStartRecording: Bool,
+		countdownValue: Int?
+	) {
+		self.isRecording = isRecording
+		self.isRevealed = isRevealed
+		self.canStartRecording = canStartRecording
+		self.countdownValue = countdownValue
+	}
+}
+
 @MainActor
 public final class ReactMainViewModel: ObservableObject {
 
 	@Published var isRecording: Bool = false
 	@Published private(set) var isRevealed: Bool = false
+	@Published private(set) var canStartRecording: Bool = false
 	@Published private(set) var countdownValue: Int? = nil
 
 	private var countdownTask: Task<Void, Never>? = nil
@@ -26,6 +46,15 @@ public final class ReactMainViewModel: ObservableObject {
 
 	func onDisappear() {
 		self.resetRevealCountdown()
+	}
+
+	func applyPreviewState(_ state: ReactMainPreviewState) {
+		self.countdownTask?.cancel()
+		self.countdownTask = nil
+		self.isRecording = state.isRecording
+		self.isRevealed = state.isRevealed
+		self.canStartRecording = state.canStartRecording
+		self.countdownValue = state.countdownValue
 	}
 
 	private func startRevealCountdown() {
@@ -47,6 +76,7 @@ public final class ReactMainViewModel: ObservableObject {
 
 			await MainActor.run {
 				self.countdownValue = nil
+				self.canStartRecording = self.isRecording
 				self.isRevealed = self.isRecording
 			}
 		}
@@ -56,6 +86,7 @@ public final class ReactMainViewModel: ObservableObject {
 		self.countdownTask?.cancel()
 		self.countdownTask = nil
 		self.countdownValue = nil
+		self.canStartRecording = false
 		self.isRevealed = false
 	}
 }

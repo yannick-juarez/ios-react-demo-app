@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import UIKit
 
 public protocol SendReactRequestUseCaseProtocol {
-    func execute(sharedImage: UIImage, hint: String, sender: User) throws -> React
+    /// Accept image data (not UIImage) to keep domain framework-free.
+    func execute(imageData: Data, hint: String, sender: User) throws -> React
 }
 
 public protocol LoadInboxUseCaseProtocol {

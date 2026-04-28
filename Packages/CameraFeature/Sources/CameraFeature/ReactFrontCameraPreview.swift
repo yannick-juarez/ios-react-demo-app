@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVFoundation
-import Combine
 import CoreDomain
 import DesignSystem
 
@@ -118,13 +117,23 @@ public struct FrontCameraPreview: View {
 
     let radius: CGFloat
     let isRecording: Bool
+    let canStartRecording: Bool
+    let onRecordingStarted: () -> Void
     let onVideoReady: (URL) -> Void
 
     @StateObject private var cameraSession = ReactFrontCameraSession()
 
-    public init(radius: CGFloat, isRecording: Bool, onVideoReady: @escaping (URL) -> Void) {
+    public init(
+        radius: CGFloat,
+        isRecording: Bool,
+        canStartRecording: Bool = true,
+        onRecordingStarted: @escaping () -> Void = {},
+        onVideoReady: @escaping (URL) -> Void
+    ) {
         self.radius = radius
         self.isRecording = isRecording
+        self.canStartRecording = canStartRecording
+        self.onRecordingStarted = onRecordingStarted
         self.onVideoReady = onVideoReady
     }
 
@@ -141,8 +150,7 @@ public struct FrontCameraPreview: View {
                 self.cameraSession.start()
             }
             .onDisappear {
-                // The view can disappear as soon as isRecording flips to false.
-                // Finalize any in-flight recording so the parent flow receives the video URL.
+                // Safety net: finalize any in-flight recording so the parent flow receives the video URL.
                 self.cameraSession.stopRecording { url in
                     Task { @MainActor in
                         self.onVideoReady(url)
@@ -151,15 +159,19 @@ public struct FrontCameraPreview: View {
                 self.cameraSession.stop()
             }
             .onChange(of: self.isRecording) { newValue in
-                if newValue {
-                    self.cameraSession.startRecording()
-                } else {
-                    self.cameraSession.stopRecording { url in
-                        Task { @MainActor in
-                            self.onVideoReady(url)
-                        }
+                guard !newValue else { return }
+                // Button released: stop recording if AVCapture was actually running.
+                self.cameraSession.stopRecording { url in
+                    Task { @MainActor in
+                        self.onVideoReady(url)
                     }
                 }
+            }
+            .onChange(of: self.canStartRecording) { newValue in
+                guard newValue && self.isRecording else { return }
+                // Countdown completed while button is held: start recording now.
+                self.cameraSession.startRecording()
+                self.onRecordingStarted()
             }
     }
 }

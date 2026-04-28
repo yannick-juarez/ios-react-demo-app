@@ -8,6 +8,51 @@ The bundle — original content + reaction video — is then returned to the sen
 
 ---
 
+## Quick start (local)
+
+- Build command (simulator, no signing):
+   - `xcodebuild -project React.xcodeproj -scheme React -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build`
+- Main app target: `React`
+- Share extension target: `Share`
+
+---
+
+## Architecture at a glance
+
+- `Apps/ReactionApp`: app entry point, composition root, root navigation.
+- `Packages/CoreDomain`: domain models, state machine contract, repository/use case protocols.
+- `Packages/CoreInfrastructure`: concrete use cases, local repository orchestration, notification scheduler.
+- `Packages/CorePersistence`: local stores (app group inbox + local demo storage).
+- `Packages/ReactionFeature`: receiver unlock flow UI (capture, preview, playback).
+- `Packages/ShareImportFeature`: share extension controller and request UI.
+- `Packages/AnalyticsKit`: event catalog + provider abstraction.
+
+---
+
+## Implementation status (current)
+
+| Area | Status | Notes |
+|---|---|---|
+| Share Extension ingest (image) | Implemented | Reads shared image and persists draft in App Group store |
+| Receiver lock/unlock UI flow | Implemented | Locked content, capture, preview, send flow |
+| Reaction flow state machine | Implemented (partial integration) | Core states modeled and used in incoming flow orchestration |
+| Background interruption handling during capture | Implemented | Capture is interrupted and flow returns to resumable locked state |
+| Local persistence | Implemented | Local demo storage + app group draft store |
+| Analytics event instrumentation | Implemented (demo-level) | Typed event catalog and key funnel events tracked |
+| Real backend integration | Planned | Current implementation is front-end first with local persistence |
+| Group sharing | Planned | Out of MVP scope |
+| Offline end-to-end behavior | Planned | Out of MVP scope |
+
+---
+
+## Known gaps / trade-offs
+
+- Recipient picker is intentionally mocked (single-path demo behavior).
+- Some values are still demo-oriented (sample identities and placeholders).
+- API contract is specified for design rigor, but runtime integration remains local/mock for MVP.
+
+---
+
 ## 1) One-pager strategy
 
 - Why this feature: turn a passive "share" into a reciprocal social interaction (content + authentic emotion), far more memorable than a read receipt.

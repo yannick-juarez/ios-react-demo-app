@@ -19,11 +19,17 @@ public struct LocalReactRepository: ReactRepository {
     }
 
     public func loadInboxReact(sender: User) -> React? {
-        let reactFromDraft = AppGroupReactInboxStore.consumeLatestDraft().flatMap { incomingDraft in
-            try? LocalDemoReactStore.save(
-                sharedImage: incomingDraft.image,
+        let reactFromDraft = AppGroupReactInboxStore.consumeLatestDraft().flatMap { incomingDraft -> React? in
+            let reactID = UUID(uuidString: incomingDraft.shareID) ?? UUID()
+            // Convert UIImage → Data for domain-level API
+            guard let imageData = incomingDraft.image.jpegData(compressionQuality: 0.92) else {
+                return nil
+            }
+            return try? LocalDemoReactStore.save(
+                imageData: imageData,
                 hint: incomingDraft.hint,
-                sender: sender
+                sender: sender,
+                reactID: reactID
             )
         }
 
@@ -34,8 +40,8 @@ public struct LocalReactRepository: ReactRepository {
         LocalDemoReactStore.loadLatest()
     }
 
-    public func saveIncomingReact(sharedImage: UIImage, hint: String, sender: User) throws -> React {
-        try LocalDemoReactStore.save(sharedImage: sharedImage, hint: hint, sender: sender)
+    public func saveIncomingReact(imageData: Data, hint: String, sender: User) throws -> React {
+        try LocalDemoReactStore.save(imageData: imageData, hint: hint, sender: sender)
     }
 
     public func saveResponseVideo(_ sourceURL: URL, for react: React) throws -> React {

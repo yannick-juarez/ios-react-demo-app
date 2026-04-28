@@ -19,10 +19,12 @@ struct AppDependencies {
     let recordReactionUseCase: any RecordReactionUseCaseProtocol
     let markReactAsUnlockedUseCase: any MarkReactAsUnlockedUseCaseProtocol
     let cameraPermissionClient: CameraPermissionClient
+    let notificationScheduler: ReactNotificationScheduler
 
     init(
         repository: any ReactRepository,
-        cameraPermissionClient: CameraPermissionClient = .live
+        cameraPermissionClient: CameraPermissionClient = .live,
+        notificationScheduler: ReactNotificationScheduler
     ) {
         self.reactRepository = repository
         self.sendReactRequestUseCase = SendReactRequestUseCase(repository: repository)
@@ -30,7 +32,14 @@ struct AppDependencies {
         self.recordReactionUseCase = RecordReactionUseCase(repository: repository)
         self.markReactAsUnlockedUseCase = MarkReactAsUnlockedUseCase(repository: repository)
         self.cameraPermissionClient = cameraPermissionClient
+        self.notificationScheduler = notificationScheduler
     }
 
-    static let live = AppDependencies(repository: LocalReactRepository())
+    @MainActor
+    static var live: AppDependencies {
+        AppDependencies(
+            repository: LocalReactRepository(),
+            notificationScheduler: ReactNotificationScheduler()
+        )
+    }
 }

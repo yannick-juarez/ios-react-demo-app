@@ -2,7 +2,7 @@
 import PackageDescription
 
 /// ShareImportFeature — Share Extension controller and preview UI.
-/// Depends on CoreDomain + CoreInfrastructure + DesignSystem.
+/// Depends on CoreDomain + CorePersistence + DesignSystem.
 let package = Package(
     name: "ShareImportFeature",
     platforms: [.iOS(.v16)],
@@ -11,13 +11,14 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../CoreDomain"),
-        .package(path: "../CoreInfrastructure"),
+        .package(path: "../CorePersistence"),
         .package(path: "../DesignSystem"),
+        .package(path: "../AnalyticsKit"),
     ],
     targets: [
         .target(
             name: "ShareImportFeature",
-            dependencies: ["CoreDomain", "CoreInfrastructure", "DesignSystem"]
+            dependencies: ["CoreDomain", "CorePersistence", "DesignSystem", "AnalyticsKit"]
         ),
         .testTarget(
             name: "ShareImportFeatureTests",

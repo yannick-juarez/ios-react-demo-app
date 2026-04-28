@@ -12,11 +12,12 @@ let package = Package(
     dependencies: [
         .package(path: "../CoreDomain"),
         .package(path: "../CorePersistence"),
+        .package(path: "../AnalyticsKit"),
     ],
     targets: [
         .target(
             name: "CoreInfrastructure",
-            dependencies: ["CoreDomain", "CorePersistence"]
+            dependencies: ["CoreDomain", "CorePersistence", "AnalyticsKit"]
         ),
         .testTarget(
             name: "CoreInfrastructureTests",

@@ -6,7 +6,6 @@
 //
 
 import UserNotifications
-import SwiftUI
 import Combine
 
 @MainActor
@@ -45,7 +44,7 @@ public final class ReactNotificationScheduler: NSObject, ObservableObject {
     public func requestAuthorization() {
         Task {
             do {
-                let granted = try await UNUserNotificationCenter.current().requestAuthorization(
+                _ = try await UNUserNotificationCenter.current().requestAuthorization(
                     options: [.alert, .sound, .badge]
                 )
                 await self.refreshStatus()
@@ -99,11 +98,6 @@ public final class ReactNotificationScheduler: NSObject, ObservableObject {
 
     public func consumePendingRoute() {
         self.pendingRoute = nil
-    }
-
-    public func openSettingsForNotifications() {
-        guard let url = URL(string: UIApplication.openNotificationSettingsURLString) else { return }
-        UIApplication.shared.open(url)
     }
 }
 

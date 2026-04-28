@@ -6,6 +6,10 @@ User A shares content from any iOS app via BeReal Share Extension to User B.
 User B must record a short reaction video to unlock the content.
 Then, original content + reaction video are returned to User A.
 
+Implementation note: this repository prioritizes a front-end working implementation.
+Backend endpoints below are a product/architecture contract for production evolution.
+Current runtime behavior relies on local persistence/mocked flows.
+
 ## 1) Front-end behavior and states
 
 ### Main flow
@@ -26,6 +30,15 @@ Then, original content + reaction video are returned to User A.
 ### Core states
 
 `loading`, `locked`, `recording`, `preview`, `uploading`, `success`, `error`, `blocked`, `expired`
+
+### Acceptance criteria (MVP)
+
+- Given a receiver opens a locked share, when they have not started recording, then the content is not visible.
+- Given capture countdown reaches zero, when the user keeps holding record, then recording starts automatically.
+- Given app moves to background during capture, when the app returns active, then capture is cancelled and flow is resumable from a locked state.
+- Given camera/microphone permission is denied, when receiver attempts to react, then blocked UI is shown with a settings action.
+- Given receiver abandons capture from preview, when they return to the flow, then the item remains locked.
+- Given reaction save fails, when send is attempted, then unlock does not proceed and error telemetry is emitted.
 
 ## 2) Data model / API contract
 

@@ -19,7 +19,9 @@ public struct ReactRequestView: View {
     public var cornerRadius: CGFloat = 8
 
     @State private var hintText: String = ""
+    @State private var searchQuery: String = ""
     @State private var reactMandatory: Bool = true
+    @State private var showReactMandatoryAlert: Bool = false
 
     public var body: some View {
         VStack(spacing: 20) {
@@ -57,7 +59,7 @@ public struct ReactRequestView: View {
                 HStack {
                     Text("To:")
                         .foregroundStyle(.primary)
-                    TextField("Search (mockup)", text: self.$hintText)
+                    TextField("Search friends...", text: self.$searchQuery)
                 }
                 .padding(12)
                 .background(RoundedRectangle(cornerRadius: 12).fill(.thinMaterial))
@@ -90,9 +92,10 @@ public struct ReactRequestView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .background(.clear)
 
             HStack(spacing: 12) {
-                Button("Annuler") {
+                Button("Cancel") {
                     self.onCancel()
                 }
                 .font(.headline)
@@ -102,7 +105,7 @@ public struct ReactRequestView: View {
                 .foregroundStyle(.primary)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
-                Button("Continuer") {
+                Button("Share") {
                     self.onContinue(self.hintText)
                 }
                 .font(.headline)
@@ -114,6 +117,17 @@ public struct ReactRequestView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .padding(.horizontal)
+        }
+        .onChange(of: self.reactMandatory) { newValue in
+            guard newValue == false else { return }
+            self.showReactMandatoryAlert = true
+        }
+        .alert("React is mandatory", isPresented: self.$showReactMandatoryAlert) {
+            Button("OK", role: .cancel) {
+                self.reactMandatory = true
+            }
+        } message: {
+            Text("This is a demo app, so the React option is mandatory.")
         }
     }
 

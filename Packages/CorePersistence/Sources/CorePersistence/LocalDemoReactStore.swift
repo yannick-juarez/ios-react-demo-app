@@ -16,8 +16,13 @@ public struct LocalDemoReactStore {
     private static let reactFileName = "latest-react.json"
     private static let responseVideoFileName = "latest-response.mov"
 
-    public static func save(sharedImage: UIImage, hint: String, sender: User = .sample) throws -> React {
-        guard let imageData = sharedImage.jpegData(compressionQuality: 0.92) else {
+    public static func save(
+        imageData: Data,
+        hint: String,
+        sender: User = .sample,
+        reactID: UUID = UUID()
+    ) throws -> React {
+        guard !imageData.isEmpty else {
             throw LocalDemoReactStoreError.invalidImage
         }
 
@@ -27,6 +32,7 @@ public struct LocalDemoReactStore {
 
         let normalizedHint = hint.trimmingCharacters(in: .whitespacesAndNewlines)
         let react = React(
+            id: reactID,
             content: imageURL,
             hint: normalizedHint.isEmpty ? "No hint" : normalizedHint,
             sender: sender,
