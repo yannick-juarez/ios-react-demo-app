@@ -1,5 +1,3 @@
-
-
 # Share Extension + Reaction Unlock
 
 From any iOS app, a sender shares content to a receiver through the BeReal Share Extension.
@@ -23,18 +21,6 @@ The app then returns a bundle to the sender: original content + reaction video.
 - `Packages/ShareImportFeature`: share extension controller and request flow.
 - `Packages/AnalyticsKit`: typed events + provider abstraction.
 
-## Current Status
-
-| Area | Status | Notes |
-|---|---|---|
-| Share Extension ingest | Implemented | Shared image persisted to app-group draft |
-| Lock/unlock receiver flow | Implemented | Locked card, capture, preview, send, unlock |
-| Capture interruption handling | Implemented | Backgrounding cancels capture and keeps resumable state |
-| Local persistence | Implemented | Local store + app-group bridge |
-| Analytics instrumentation | Implemented (demo-level) | Funnel events wired with `share_id` propagation |
-| Backend runtime integration | Planned | API contract defined, runtime still local/mock |
-| Group sharing / offline loop | Planned | Out of MVP scope |
-
 ## Product Direction
 
 - Objective: increase reciprocal interactions, not raw share volume.
@@ -50,19 +36,6 @@ The app then returns a bundle to the sender: original content + reaction video.
 4. Receiver records and confirms a short reaction video.
 5. Content unlocks for receiver.
 6. Bundle is returned to sender inbox.
-
-## Metrics (Directional Targets)
-
-| Metric | Definition | Target |
-|---|---|---|
-| Reaction Unlock Rate | `% locked shares unlocked` | `40-50%` early cohorts |
-| Loop Completion Rate | `% sent shares returned to sender` | `30-35%` at launch |
-| Share-to-First-Loop Time | Median send to return latency | `P50 < 10 min`, `P90 < 2 h` |
-| D7 Retention Uplift | Variant vs control | `+1.5 to +3pp` with healthy guardrails |
-
-Guardrails:
-- Lock-screen abandonment rate `< 25%`
-- Notification opt-out delta `<= +0.5pp` vs control
 
 ## Tracking Plan
 

@@ -1,8 +1,8 @@
-# Spec (Concise) — Share Extension + Reaction Unlock
+# Spec — Share Extension + Reaction Unlock
 
 ## Scope
 
-User A shares content from any iOS app to User B via BeReal Share Extension.
+User A shares content from any iOS app to User B via Share Extension.
 User B must record a short reaction video to unlock the content.
 The system returns a bundle to User A: original content + reaction video.
 
