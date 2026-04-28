@@ -5,6 +5,7 @@ import PackageDescription
 /// Depends on CoreDomain + CorePersistence + DesignSystem.
 let package = Package(
     name: "ShareImportFeature",
+    defaultLocalization: "en",
     platforms: [.iOS(.v16)],
     products: [
         .library(name: "ShareImportFeature", targets: ["ShareImportFeature"]),
@@ -18,7 +19,10 @@ let package = Package(
     targets: [
         .target(
             name: "ShareImportFeature",
-            dependencies: ["CoreDomain", "CorePersistence", "DesignSystem", "AnalyticsKit"]
+            dependencies: ["CoreDomain", "CorePersistence", "DesignSystem", "AnalyticsKit"],
+            resources: [
+                .process("Resources"),
+            ]
         ),
         .testTarget(
             name: "ShareImportFeatureTests",

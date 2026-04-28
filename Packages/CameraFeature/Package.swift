@@ -5,6 +5,7 @@ import PackageDescription
 /// Depends on CoreDomain + DesignSystem.
 let package = Package(
     name: "CameraFeature",
+    defaultLocalization: "en",
     platforms: [.iOS(.v16)],
     products: [
         .library(name: "CameraFeature", targets: ["CameraFeature"]),
@@ -16,7 +17,10 @@ let package = Package(
     targets: [
         .target(
             name: "CameraFeature",
-            dependencies: ["CoreDomain", "DesignSystem"]
+            dependencies: ["CoreDomain", "DesignSystem"],
+            resources: [
+                .process("Resources"),
+            ]
         ),
         .testTarget(
             name: "CameraFeatureTests",

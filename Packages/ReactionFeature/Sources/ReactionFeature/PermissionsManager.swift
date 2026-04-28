@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 import Combine
+import Foundation
 
 @MainActor
 public final class PermissionsManager: ObservableObject {
@@ -35,24 +36,40 @@ public final class PermissionsManager: ObservableObject {
         !self.areAllAuthorized && !self.shouldShowAllowAction
     }
 
-    public var protectionMessage: LocalizedStringKey {
+    public var protectionMessage: String {
         if self.shouldShowOpenSettingsAction {
-            return "You must enable the camera and microphone in settings to record your reaction."
+            return String(
+                localized: "reaction.permissions.enable_in_settings",
+                defaultValue: "You must enable the camera and microphone in settings to record your reaction.",
+                bundle: .module
+            )
         }
 
-        return "You must allow camera and microphone access to record your reaction."
+        return String(
+            localized: "reaction.permissions.allow_access",
+            defaultValue: "You must allow camera and microphone access to record your reaction.",
+            bundle: .module
+        )
     }
 
-    public var actionTitle: LocalizedStringKey? {
+    public var actionTitle: String? {
         if self.areAllAuthorized {
             return nil
         }
 
         if self.shouldShowOpenSettingsAction {
-            return "Open Settings"
+            return String(
+                localized: "reaction.permissions.open_settings",
+                defaultValue: "Open Settings",
+                bundle: .module
+            )
         }
 
-        return "Allow Camera & Microphone Access"
+        return String(
+            localized: "reaction.permissions.allow_button",
+            defaultValue: "Allow Camera & Microphone Access",
+            bundle: .module
+        )
     }
 
     public func refreshStatuses() {

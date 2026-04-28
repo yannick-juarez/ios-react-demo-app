@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreDomain
 import DesignSystem
+import Foundation
 
 public struct ContentPreview: View {
 
@@ -39,7 +40,13 @@ public struct ContentPreview: View {
                         Text("\(countdownValue)")
                             .font(.system(size: 96, weight: .medium))
 
-                        Text("Keep holding to unlock")
+                        Text(
+                            String(
+                                localized: "reaction.content.keep_holding",
+                                defaultValue: "Keep holding to unlock",
+                                bundle: .module
+                            )
+                        )
                             .font(.headline)
                     }
                 } else {
@@ -47,7 +54,17 @@ public struct ContentPreview: View {
                         VStack {
                             Image(systemName: "link")
                                 .font(.largeTitle)
-                            Text("\(self.react.sender.displayName) has sent you a content to React")
+                            Text(
+                                String(
+                                    format: String(
+                                        localized: "reaction.content.sender_sent",
+                                        defaultValue: "%@ has sent you a content to React",
+                                        bundle: .module
+                                    ),
+                                    locale: Locale.current,
+                                    self.react.sender.displayName
+                                )
+                            )
                                 .font(.title3.bold())
                         }
                         .padding()
@@ -71,7 +88,13 @@ public struct ContentPreview: View {
                             if !self.permissionsManager.areAllAuthorized {
                                 ReactPermissionsView()
                             } else {
-                                Text("Hold the record button to unlock this content")
+                                Text(
+                                    String(
+                                        localized: "reaction.content.hold_to_unlock",
+                                        defaultValue: "Hold the record button to unlock this content",
+                                        bundle: .module
+                                    )
+                                )
                                     .font(.title3.bold())
                             }
                         }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import Foundation
 import CoreDomain
 import DesignSystem
 
@@ -26,7 +27,13 @@ public struct ReactRequestView: View {
     public var body: some View {
         VStack(spacing: 20) {
             VStack(spacing: 10) {
-                Text("Share content with React")
+                Text(
+                    String(
+                        localized: "share.request.title",
+                        defaultValue: "Share content with React",
+                        bundle: .module
+                    )
+                )
                     .font(.title3.bold())
             }
             .padding(.top)
@@ -45,21 +52,48 @@ public struct ReactRequestView: View {
                     .padding(.horizontal, 8)
 
                 VStack {
-                    TextField("Add a hint...", text: self.$hintText)
+                    TextField(
+                        String(
+                            localized: "share.request.hint_placeholder",
+                            defaultValue: "Add a hint...",
+                            bundle: .module
+                        ),
+                        text: self.$hintText
+                    )
                         .padding(8)
                         .padding(.horizontal, 8)
                         .background(RoundedRectangle(cornerRadius: 12).fill(.thinMaterial))
 
-                    Toggle("React mandatory", isOn: self.$reactMandatory)
+                    Toggle(
+                        String(
+                            localized: "share.request.react_mandatory",
+                            defaultValue: "React mandatory",
+                            bundle: .module
+                        ),
+                        isOn: self.$reactMandatory
+                    )
                 }
             }
             .padding(.horizontal)
 
             VStack {
                 HStack {
-                    Text("To:")
+                    Text(
+                        String(
+                            localized: "share.request.to",
+                            defaultValue: "To:",
+                            bundle: .module
+                        )
+                    )
                         .foregroundStyle(.primary)
-                    TextField("Search friends...", text: self.$searchQuery)
+                    TextField(
+                        String(
+                            localized: "share.request.search_placeholder",
+                            defaultValue: "Search friends...",
+                            bundle: .module
+                        ),
+                        text: self.$searchQuery
+                    )
                 }
                 .padding(12)
                 .background(RoundedRectangle(cornerRadius: 12).fill(.thinMaterial))
@@ -69,8 +103,20 @@ public struct ReactRequestView: View {
                 } label: {
                     HStack {
                         Image(systemName: "person.2.badge.plus.fill")
-                        Text("Create a new group")
-                        Text("(Mockup)")
+                        Text(
+                            String(
+                                localized: "share.request.create_group",
+                                defaultValue: "Create a new group",
+                                bundle: .module
+                            )
+                        )
+                        Text(
+                            String(
+                                localized: "share.request.mockup",
+                                defaultValue: "(Mockup)",
+                                bundle: .module
+                            )
+                        )
                             .foregroundStyle(.secondary)
                         Spacer()
                     }
@@ -82,10 +128,26 @@ public struct ReactRequestView: View {
             .padding(.horizontal)
 
             List {
-                Section(header: Text("Selected")) {
+                Section(
+                    header: Text(
+                        String(
+                            localized: "share.request.section.selected",
+                            defaultValue: "Selected",
+                            bundle: .module
+                        )
+                    )
+                ) {
                     SelectableUser(selected: true)
                 }
-                Section(header: Text("A")) {
+                Section(
+                    header: Text(
+                        String(
+                            localized: "share.request.section.a",
+                            defaultValue: "A",
+                            bundle: .module
+                        )
+                    )
+                ) {
                     ForEach(0..<3) { _ in
                         SelectableUser()
                     }
@@ -95,7 +157,13 @@ public struct ReactRequestView: View {
             .background(.clear)
 
             HStack(spacing: 12) {
-                Button("Cancel") {
+                Button(
+                    String(
+                        localized: "share.common.cancel",
+                        defaultValue: "Cancel",
+                        bundle: .module
+                    )
+                ) {
                     self.onCancel()
                 }
                 .font(.headline)
@@ -105,7 +173,13 @@ public struct ReactRequestView: View {
                 .foregroundStyle(.primary)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
-                Button("Share") {
+                Button(
+                    String(
+                        localized: "share.request.share",
+                        defaultValue: "Share",
+                        bundle: .module
+                    )
+                ) {
                     self.onContinue(self.hintText)
                 }
                 .font(.headline)
@@ -122,12 +196,32 @@ public struct ReactRequestView: View {
             guard newValue == false else { return }
             self.showReactMandatoryAlert = true
         }
-        .alert("React is mandatory", isPresented: self.$showReactMandatoryAlert) {
-            Button("OK", role: .cancel) {
+        .alert(
+            String(
+                localized: "share.request.alert.mandatory_title",
+                defaultValue: "React is mandatory",
+                bundle: .module
+            ),
+            isPresented: self.$showReactMandatoryAlert
+        ) {
+            Button(
+                String(
+                    localized: "share.common.ok",
+                    defaultValue: "OK",
+                    bundle: .module
+                ),
+                role: .cancel
+            ) {
                 self.reactMandatory = true
             }
         } message: {
-            Text("This is a demo app, so the React option is mandatory.")
+            Text(
+                String(
+                    localized: "share.request.alert.mandatory_message",
+                    defaultValue: "This is a demo app, so the React option is mandatory.",
+                    bundle: .module
+                )
+            )
         }
     }
 

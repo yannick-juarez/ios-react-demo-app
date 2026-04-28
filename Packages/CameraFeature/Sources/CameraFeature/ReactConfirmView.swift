@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreDomain
 import DesignSystem
+import Foundation
 
 public struct ConfirmView: View {
 
@@ -57,7 +58,13 @@ public struct ConfirmView: View {
             } label: {
                 HStack {
                     Spacer()
-                    Text("Send React Now")
+                    Text(
+                        String(
+                            localized: "camera.confirm.send_now",
+                            defaultValue: "Send React Now",
+                            bundle: .module
+                        )
+                    )
                     Spacer()
                 }
                 .font(.headline)
@@ -72,7 +79,13 @@ public struct ConfirmView: View {
             Button {
                 self.showCancelConfirmation = true
             } label: {
-                Text("Cancel")
+                Text(
+                    String(
+                        localized: "camera.common.cancel",
+                        defaultValue: "Cancel",
+                        bundle: .module
+                    )
+                )
                     .font(.headline)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 10)
@@ -86,16 +99,43 @@ public struct ConfirmView: View {
             self.cancelCountdown()
         }
         .animation(.easeInOut, value: self.countdownValue)
-        .alert("Are you sure?", isPresented: self.$showCancelConfirmation) {
-            Button("Cancel recording", role: .destructive) {
+        .alert(
+            String(
+                localized: "camera.confirm.cancel.title",
+                defaultValue: "Are you sure?",
+                bundle: .module
+            ),
+            isPresented: self.$showCancelConfirmation
+        ) {
+            Button(
+                String(
+                    localized: "camera.confirm.cancel_recording",
+                    defaultValue: "Cancel recording",
+                    bundle: .module
+                ),
+                role: .destructive
+            ) {
                 self.cancelCountdown()
                 self.onCancel()
             }
-            Button("Keep recording", role: .cancel) {
+            Button(
+                String(
+                    localized: "camera.confirm.keep_recording",
+                    defaultValue: "Keep recording",
+                    bundle: .module
+                ),
+                role: .cancel
+            ) {
                 self.startCountdown()
             }
         } message: {
-            Text("This will discard your recording.")
+            Text(
+                String(
+                    localized: "camera.confirm.cancel.message",
+                    defaultValue: "This will discard your recording.",
+                    bundle: .module
+                )
+            )
         }
     }
 

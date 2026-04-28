@@ -1,0 +1,92 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld" : {
+
+    },
+    "Add a reply..." : {
+
+    },
+    "reaction.content.hold_to_unlock" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold the record button to unlock this content"
+          }
+        }
+      }
+    },
+    "reaction.content.keep_holding" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep holding to unlock"
+          }
+        }
+      }
+    },
+    "reaction.content.sender_sent" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ has sent you a content to React"
+          }
+        }
+      }
+    },
+    "reaction.main.send_hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your reaction will be sent to %@"
+          }
+        }
+      }
+    },
+    "reaction.permissions.allow_access" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You must allow camera and microphone access to record your reaction."
+          }
+        }
+      }
+    },
+    "reaction.permissions.allow_button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Camera & Microphone Access"
+          }
+        }
+      }
+    },
+    "reaction.permissions.enable_in_settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You must enable the camera and microphone in settings to record your reaction."
+          }
+        }
+      }
+    },
+    "reaction.permissions.open_settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

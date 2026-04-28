@@ -10,6 +10,7 @@ import CoreDomain
 import DesignSystem
 import CameraFeature
 import AnalyticsKit
+import Foundation
 
 public struct ReactMainView: View {
 
@@ -55,7 +56,17 @@ public struct ReactMainView: View {
                     isBlurred: !self.viewModel.isRevealed,
                     countdownValue: self.viewModel.countdownValue
                 )
-                Text("Your reaction will be sent to \(self.react.sender.displayName)")
+                Text(
+                    String(
+                        format: String(
+                            localized: "reaction.main.send_hint",
+                            defaultValue: "Your reaction will be sent to %@",
+                            bundle: .module
+                        ),
+                        locale: Locale.current,
+                        self.react.sender.displayName
+                    )
+                )
                     .font(.subheadline)
             }
             .padding()
